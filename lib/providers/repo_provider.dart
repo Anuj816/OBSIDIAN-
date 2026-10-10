@@ -215,15 +215,24 @@ class RepoNotifier extends Notifier<RepoState> {
     return const RepoState();
   }
 
-  Future<void> initialize(String cacheDir) {
+  Future<void> initialize(
+    String cacheDir, {
+    bool applySavedRegistry = true,
+  }) {
     if (state.isInitialized) return Future<void>.value();
     _cacheDir = cacheDir;
-    return _initialization ??= _initialize(cacheDir).whenComplete(() {
+    return _initialization ??= _initialize(
+      cacheDir,
+      applySavedRegistry: applySavedRegistry,
+    ).whenComplete(() {
       _initialization = null;
     });
   }
 
-  Future<void> _initialize(String cacheDir) async {
+  Future<void> _initialize(
+    String cacheDir, {
+    required bool applySavedRegistry,
+  }) async {
     final prefs = await SharedPreferences.getInstance();
     final savedUrl = prefs.getString(_registryUrlPrefKey) ?? _defaultRegistryUrl;
     if (!prefs.containsKey(_registryUrlPrefKey)) {
@@ -240,7 +249,10 @@ class RepoNotifier extends Notifier<RepoState> {
       await ref.read(extensionProvider.notifier).ensureInitialized();
       await PlatformBridge.initExtensionRepo(cacheDir);
 
-      if (savedUrl.isNotEmpty) {
+      // When initialization is triggered by an explicit URL change, let
+      // setRegistryUrl apply and validate that URL exactly once. Normal startup
+      // still restores the previously saved registry.
+      if (applySavedRegistry && savedUrl.isNotEmpty) {
         await PlatformBridge.setRepoRegistryUrl(savedUrl);
         await refresh();
       }
@@ -270,7 +282,7 @@ class RepoNotifier extends Notifier<RepoState> {
       if (!state.isInitialized) {
         final cacheDir =
             _cacheDir ?? (await getApplicationCacheDirectory()).path;
-        await initialize(cacheDir);
+        await initialize(cacheDir, applySavedRegistry: false);
         if (!state.isInitialized) {
           throw StateError(
             state.error ?? 'Extension repository initialization failed',
