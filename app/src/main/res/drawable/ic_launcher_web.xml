@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- Solid Pitch Black Background -->
+    <path
+        android:pathData="M0,0h512v512h-512z"
+        android:fillColor="#000000" />
+
+    <!-- Subtle Vignette Glow -->
+    <path
+        android:pathData="M256,256m-256,0a256,256 0 1,1 512,0a256,256 0 1,1 -512,0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerX="256"
+                android:centerY="256"
+                android:gradientRadius="256"
+                android:startColor="#0A0E17"
+                android:endColor="#000000"
+                android:type="radial" />
+        </aapt:attr>
+    </path>
+
+    <!-- 1. Top Apex Bloom Glow (Electric Cyan bloom only at the obsidian tip) -->
+    <path
+        android:pathData="M256,114m-76,0a76,76 0 1,1 152,0a76,76 0 1,1 -152,0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerX="256"
+                android:centerY="114"
+                android:gradientRadius="76"
+                android:startColor="#6600E5FF"
+                android:endColor="#0000E5FF"
+                android:type="radial" />
+        </aapt:attr>
+    </path>
+
+    <!-- 2. Thin Gold Ring (Hi-Fi Studio Accent centered on crystal waist) -->
+    <path
+        android:strokeWidth="7.2"
+        android:strokeColor="#D4AF37"
+        android:fillColor="#00000000"
+        android:pathData="M166,256 A90,90 0 1,0 346,256 A90,90 0 1,0 166,256" />
+
+    <!-- 4 Tiny Precision Gold Ticks on the Ring -->
+    <path
+        android:strokeWidth="6.0"
+        android:strokeColor="#F5D77F"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M256,154 L256,171 M256,341 L256,358 M154,256 L171,256 M341,256 L358,256" />
+
+    <!-- 3. Main Mark: Cyan Obsidian Crystal (Vertical Faceted Diamond Spear) -->
+    <!-- Upper Left Facet -->
+    <path
+        android:pathData="M256,114 L204,256 L256,256 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:angle="315"
+                android:startColor="#80DEEA"
+                android:centerColor="#00B8D4"
+                android:endColor="#00838F"
+                android:type="linear" />
+        </aapt:attr>
+    </path>
+
+    <!-- Upper Right Facet (Primary Light Highlight) -->
+    <path
+        android:pathData="M256,114 L256,256 L308,256 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:angle="225"
+                android:startColor="#E0F7FA"
+                android:centerColor="#00E5FF"
+                android:endColor="#00B8D4"
+                android:type="linear" />
+        </aapt:attr>
+    </path>
+
+    <!-- Lower Left Facet (Deep Refraction) -->
+    <path
+        android:pathData="M204,256 L256,388 L256,256 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:angle="45"
+                android:startColor="#0097A7"
+                android:centerColor="#006064"
+                android:endColor="#004D40"
+                android:type="linear" />
+        </aapt:attr>
+    </path>
+
+    <!-- Lower Right Facet (Electric Cyan Gradient) -->
+    <path
+        android:pathData="M256,256 L256,388 L308,256 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:angle="135"
+                android:startColor="#00E5FF"
+                android:centerColor="#0097A7"
+                android:endColor="#006064"
+                android:type="linear" />
+        </aapt:attr>
+    </path>
+
+    <!-- Outer Facet Contour Edge -->
+    <path
+        android:strokeWidth="3.8"
+        android:strokeColor="#80DEEA"
+        android:fillColor="#00000000"
+        android:pathData="M256,114 L308,256 L256,388 L204,256 Z" />
+
+    <!-- Equatorial Facet Ridge -->
+    <path
+        android:strokeWidth="2.8"
+        android:strokeColor="#B2EBF2"
+        android:fillColor="#00000000"
+        android:pathData="M204,256 L308,256" />
+
+    <!-- Vertical Center Spine Highlight -->
+    <path
+        android:strokeWidth="4.2"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M256,114 L256,388" />
+
+    <!-- 4. Top Apex Glint / Obsidian Peak Flare (Subtle Diamond Sparkle) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M256,102 L263,114 L256,126 L249,114 Z" />
+    <path
+        android:strokeWidth="2.4"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M244,114 L268,114" />
+
+</vector>

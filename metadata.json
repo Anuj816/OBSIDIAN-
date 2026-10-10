@@ -1,0 +1,8 @@
+{
+  "name": "Obsidian",
+  "description": "High-performance lossless audio player with hardware-accelerated Milkdrop visualizers, 32-band DSP engine, and fluid 60 FPS spring animations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
