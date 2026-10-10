@@ -284,7 +284,9 @@ void main() {
   );
 
   test('repository waits for a successful owner and retries failure', () async {
-    SharedPreferences.setMockInitialValues({});
+    // Keep this test focused on native initialization retry; normal startup
+    // registry restoration is covered separately.
+    SharedPreferences.setMockInitialValues({'store_registry_url': ''});
     final notifier = _DelayedExtensionNotifier().._failInitialization = true;
     notifier._ready.complete();
     final container = ProviderContainer(
